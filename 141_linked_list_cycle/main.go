@@ -6,7 +6,22 @@ type ListNode struct {
 }
 
 // https://leetcode.com/problems/linked-list-cycle/
-func hasCycle(head *ListNode) bool {
+// O(n) time and memory solution
+	func hasCycle(head *ListNode) bool {
+	nodeMap := map[*ListNode]bool{}
+	curNode := head
+	for curNode != nil {
+		if nodeMap[curNode] {
+			return true
+		}
+		nodeMap[curNode] = true
+		curNode = curNode.Next
+	}
+	return false
+}
+
+// O(1) memory solution
+func hasCycle2(head *ListNode) bool {
 	if head == nil {
 		return false
 	}
